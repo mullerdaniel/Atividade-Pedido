@@ -10,6 +10,8 @@ import com.example.atividade_pedido.Repository.PedidoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ItemPedidoService {
@@ -18,6 +20,8 @@ public class ItemPedidoService {
     private final PedidoRepository pedidoRepository;
     private final ItemPedidoMapper mapper;
 
+
+    // SALVAR ITEM PEDIDO
     public ItemPedidoRespostaDto criarItem(ItemPedidoRequisicaoDto dto){
 
         Pedido pedido = pedidoRepository.findById(dto.getPedidoId())
@@ -29,5 +33,20 @@ public class ItemPedidoService {
         ItemPedido salvo = repository.save(item);
 
         return mapper.toDto(salvo);
+    }
+
+    // LISTAR TODOS OS ITEM PEDIDOS
+    public List<ItemPedido> listarItemPedidos() {
+        return repository.findAll();
+    }
+
+    // BUSCAR ITEM PEDIDO POR ID
+    public ItemPedido buscarItemPedidoPorId(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    // DELETAR UM ITEM PEDIDO PLR ID
+    public void deletarItemPedido(Long id) {
+        repository.deleteById(id);
     }
 }
