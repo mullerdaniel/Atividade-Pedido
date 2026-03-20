@@ -1,12 +1,12 @@
 package com.example.atividade_pedido.Mapper;
 
-import com.example.atividade_pedido.Dto.PedidoRequisicao;
-import com.example.atividade_pedido.Dto.PedidoResposta;
+import com.example.atividade_pedido.Dto.PedidoRequisicaoDto;
+import com.example.atividade_pedido.Dto.PedidoRespostaDto;
 import com.example.atividade_pedido.Model.Pedido;
 
 public class PedidoMapper {
 
-    public static Pedido toModel(PedidoRequisicao pedidoRequisicao) {
+    public static Pedido toModel(PedidoRequisicaoDto pedidoRequisicao) {
         Pedido pedido = new Pedido();
 
         pedido.setData_pedido(pedidoRequisicao.data_pedido());
@@ -14,8 +14,8 @@ public class PedidoMapper {
         return pedido;
     }
 
-    public static PedidoResposta toResposta(Pedido pedido) {
-        return new PedidoResposta(
+    public static PedidoRespostaDto toResposta(Pedido pedido) {
+        return new PedidoRespostaDto(
                 pedido.getId(),
                 pedido.getData_pedido()
         );
